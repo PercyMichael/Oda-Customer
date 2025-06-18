@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // Colors
 class AppColors {
-  static const Color primary = Color(0xFF00B2AB);
-  static const Color secondary = Color(0xFF000000);
+  static const Color primary = Color(0xFF000000);
+  static const Color red = Color(0xFFF03351);
+  static const Color secondary = Color(0xFF00B2AB);
   static const Color white = Color(0xFFFFFFFF);
   static const Color grey = Color(0xFF757575);
   static const Color background = Color(0xFFFFFFFF);
@@ -11,29 +13,40 @@ class AppColors {
   static const Color textSecondary = Color(0xFF757575);
 }
 
-// Fonts
-class AppFonts {
-  static const String primaryFont = 'Roboto';
-  static const String secondaryFont = 'Montserrat';
+class AppSpacing {
+  static const double padding = 24.0;
 }
 
 // Text Styles
 class AppTextStyles {
-  static const TextStyle heading = TextStyle(
-    fontFamily: AppFonts.primaryFont,
-    fontSize: 24,
-    fontWeight: FontWeight.bold,
+  static final TextStyle appBarText = GoogleFonts.poppins(
     color: AppColors.textPrimary,
   );
 
-  static const TextStyle body = TextStyle(
-    fontFamily: AppFonts.primaryFont,
+  static final TextStyle title = GoogleFonts.poppins(
+    fontSize: 30,
+    fontWeight: FontWeight.w500,
+    color: AppColors.textPrimary,
+  );
+
+  static final TextStyle bodyTitle = GoogleFonts.poppins(
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+    color: AppColors.textPrimary,
+  );
+
+  static final TextStyle bodyTitle2 = GoogleFonts.poppins(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    color: AppColors.textPrimary,
+  );
+
+  static final TextStyle body = GoogleFonts.poppins(
     fontSize: 16,
     color: AppColors.textSecondary,
   );
 
-  static const TextStyle button = TextStyle(
-    fontFamily: AppFonts.secondaryFont,
+  static final TextStyle button = GoogleFonts.poppins(
     fontSize: 17,
     fontWeight: FontWeight.w600,
     color: Colors.white,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oda/constants.dart';
-import 'package:oda/screens/button.dart';
+import 'package:oda/components/button.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'otp_verification.dart';
 

@@ -11,8 +11,6 @@ class onBoard extends StatefulWidget {
 }
 
 class _onBoardState extends State<onBoard> {
-  int _currentPage = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,9 +36,7 @@ class _onBoardState extends State<onBoard> {
                       autoPlayAnimationDuration: Duration(milliseconds: 800),
                       viewportFraction: 0.58,
                       onPageChanged: (index, reason) {
-                        setState(() {
-                          _currentPage = index;
-                        });
+                        setState(() {});
                       },
                     ),
                     items:

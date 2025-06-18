@@ -59,6 +59,5 @@ class Button extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

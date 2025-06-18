@@ -16,18 +16,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'Oda',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
+        appBarTheme: AppBarTheme(backgroundColor: AppColors.white),
         scaffoldBackgroundColor: AppColors.white,
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.white),
       ),
 
-      home: const Home(),
-      initialRoute: '/onboard',
+      home: const Login(),
+      initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: () => Home()),
+        GetPage(name: '/', page: () => Login()),
         GetPage(name: '/onboard', page: () => onBoard()),
-        GetPage(name: '/login', page: () => Login()),
+        GetPage(name: '/home', page: () => HomeScreen()),
       ],
     );
   }
