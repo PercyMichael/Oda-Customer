@@ -83,12 +83,7 @@ class _onBoardState extends State<onBoard> {
                   ),
                 ),
 
-                const Spacer(),
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: Image.asset('assets/branding/powered.png', width: 100),
-                ),
+                Image.asset('assets/branding/powered.png', width: 85),
               ],
             ),
           ),
