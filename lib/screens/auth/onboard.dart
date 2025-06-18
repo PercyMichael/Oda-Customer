@@ -43,19 +43,20 @@ class _onBoardState extends State<onBoard> {
                         });
                       },
                     ),
-                    items: [1, 2, 3, 4].map((i) {
-                      return Builder(
-                        builder: (BuildContext context) {
-                          return Container(
-                            height: 100,
-                            child: Image.asset(
-                              'assets/branding/Frame 1261157968.png',
-                              fit: BoxFit.cover,
-                            ),
+                    items:
+                        [1, 2, 3, 4].map((i) {
+                          return Builder(
+                            builder: (BuildContext context) {
+                              return Container(
+                                height: 100,
+                                child: Image.asset(
+                                  'assets/branding/Frame 1261157968.png',
+                                  fit: BoxFit.cover,
+                                ),
+                              );
+                            },
                           );
-                        },
-                      );
-                    }).toList(),
+                        }).toList(),
                   ),
                 ),
 
@@ -82,8 +83,9 @@ class _onBoardState extends State<onBoard> {
                     child: const Text('Get Started'),
                   ),
                 ),
-
+                const Spacer(),
                 Image.asset('assets/branding/powered.png', width: 85),
+                const SizedBox(height: 20),
               ],
             ),
           ),
