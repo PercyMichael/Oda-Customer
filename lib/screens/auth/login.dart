@@ -100,7 +100,7 @@ class _LoginState extends State<Login> {
                 },
                 elevation: 0,
                 color: AppColors.white,
-                textColor: AppColors.secondary,
+                textColor: AppColors.primary,
               ),
               const SizedBox(height: 20),
               Button(
@@ -115,7 +115,7 @@ class _LoginState extends State<Login> {
                 },
                 elevation: 0,
                 color: AppColors.white,
-                textColor: AppColors.secondary,
+                textColor: AppColors.primary,
               ),
               const Spacer(),
 

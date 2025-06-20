@@ -75,7 +75,7 @@ class _OTPVerificationState extends State<OTPVerification> {
             Text(
               'Resend code in 30 seconds',
               style: AppTextStyles.body.copyWith(
-                color: AppColors.primary,
+                color: AppColors.secondary,
                 fontSize: 16,
               ),
             ),
@@ -83,7 +83,7 @@ class _OTPVerificationState extends State<OTPVerification> {
 
             Button(
               text: 'Verify OTP',
-              color: AppColors.primary,
+              color: AppColors.secondary,
               elevation: 0,
               onPressed: () {
                 // Navigate to home screen

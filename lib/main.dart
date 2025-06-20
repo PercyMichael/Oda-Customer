@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:oda/constants.dart';
 import 'package:oda/screens/auth/login.dart';
 import 'package:oda/screens/auth/onboard.dart';
+import 'package:oda/screens/break_fast.dart';
 import 'package:oda/screens/home.dart';
 
 void main() {
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/', page: () => Login()),
         GetPage(name: '/onboard', page: () => onBoard()),
         GetPage(name: '/home', page: () => HomeScreen()),
+
+        //Food Categories
+        GetPage(name: '/break_fast', page: () => BreakFast()),
       ],
     );
   }
