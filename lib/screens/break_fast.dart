@@ -1,112 +1,123 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:oda/components/categoryItem.dart';
 import 'package:oda/components/access.dart';
 import 'package:oda/components/customBackButton.dart';
+import 'package:oda/components/lastOrderCard.dart';
+import 'package:oda/components/restaurantCard.dart';
 import 'package:oda/components/searchBox.dart';
+import 'package:oda/components/sectionTitle.dart';
 import 'package:oda/constants.dart';
+import 'package:get/get.dart';
+import 'package:oda/data/data.dart';
+import 'package:oda/data/data.dart' as data;
+import 'package:oda/models/restaurant.dart';
 
 class BreakFast extends StatefulWidget {
-  const BreakFast({super.key});
+  const BreakFast({Key? key}) : super(key: key);
 
   @override
   State<BreakFast> createState() => _BreakFastState();
 }
 
 class _BreakFastState extends State<BreakFast> {
-  // Data structure for categories
-  final List<Map<String, dynamic>> categories = [
-    {
-      'name': 'Promos',
-      'navigationLink': '/promos',
-      'imagePath': 'assets/branding/menu/Promos.png',
-    },
-    {
-      'name': 'Near Me',
-      'navigationLink': '/near_me',
-      'imagePath': 'assets/branding/menu/Near Me.png',
-    },
-    {
-      'name': 'Open 24Hrs',
-      'navigationLink': '/open_24hrs',
-      'imagePath': 'assets/branding/menu/Open 24Hrs.png',
-    },
-    {
-      'name': 'Local Food',
-      'navigationLink': '/local_food',
-      'imagePath': 'assets/branding/menu/Local Food.png',
-    },
-    {
-      'name': 'Pizza',
-      'navigationLink': '/pizza',
-      'imagePath': 'assets/branding/menu/Pizza.png',
-    },
-    {
-      'name': 'Burgers',
-      'navigationLink': '/burgers',
-      'imagePath': 'assets/branding/menu/Burgers.png',
-    },
-    {
-      'name': 'Fast Foods',
-      'navigationLink': '/fast_foods',
-      'imagePath': 'assets/branding/menu/Fast Foods.png',
-    },
-    {
-      'name': 'Halal',
-      'navigationLink': '/halal',
-      'imagePath': 'assets/branding/menu/Halal.png',
-    },
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            // Header with back button and access widget
-            Padding(
-              padding: EdgeInsets.all(20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [CustomBackButton(), Access()],
-              ),
-            ),
-            // Search TextField
-            SearchBox(),
-            //Category Grid
-            Expanded(
-              child: GridView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                  mainAxisSpacing: 5,
-                  crossAxisSpacing: 0,
-                  childAspectRatio: 0.8, // More vertical space for image+text
+        child: SingleChildScrollView(
+          child: Container(
+            child: Column(
+              spacing: 20,
+              children: [
+                // Header with back button and access widget
+                Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [CustomBackButton(), Access()],
+                  ),
                 ),
-                itemCount: categories.length,
-                itemBuilder: (context, index) {
-                  final category = categories[index];
-                  return CategoryItem(
-                    name: category['name'],
-                    navigationLink: category['navigationLink'],
-                    imagePath: category['imagePath'],
-                  );
-                },
-              ),
+                // Search TextField
+                SearchBox(),
+                //Category Grid
+                GridView.builder(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                    mainAxisSpacing: 5,
+                    crossAxisSpacing: 0,
+                    childAspectRatio: 0.90,
+                  ),
+                  itemCount: data.categories.length,
+                  itemBuilder: (context, index) {
+                    final category = data.categories[index];
+                    return CategoryItem(
+                      name: category.name,
+                      navigationLink: category.navigationLink,
+                      imagePath: category.imagePath,
+                    );
+                  },
+                ),
+
+                // Restaurant Grid
+                Column(
+                  children: [
+                    SectionTitle(title: 'Restaurants'),
+                    GridView.builder(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 4,
+                            mainAxisSpacing: 10,
+                            crossAxisSpacing: 10,
+                            childAspectRatio: 0.8,
+                          ),
+                      itemCount: data.restaurants.length,
+                      itemBuilder: (context, index) {
+                        final restaurant = data.restaurants[index];
+                        return GestureDetector(
+                          onTap: () {
+                            Get.toNamed(
+                              '/restaurant_details',
+                              parameters: {'restaurantName': restaurant.name},
+                            );
+                          },
+                          child: RestaurantCard(
+                            restaurant: restaurant.toJson(),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+
+                //From Last order section
+                SectionTitle(title: 'From Last Order'),
+                GridView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 20,
+                    crossAxisSpacing: 20,
+                    childAspectRatio: 0.69,
+                  ),
+                  itemCount: data.lastOrders.length,
+                  itemBuilder: (context, index) {
+                    final lastOrderItem = data.lastOrders[index];
+                    return LastOrderCard(lastOrderItem: lastOrderItem);
+                  },
+                ),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Restaurant', style: AppTextStyles.bodyTitle),
-                  Text('See all', style: AppTextStyles.body),
-                ],
-              ),
-            ),
-            Center(child: Text('Welcome to the Breakfast Page!')),
-          ],
+          ),
         ),
       ),
     );
