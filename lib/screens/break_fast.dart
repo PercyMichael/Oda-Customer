@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:oda/components/CategoryItem.dart';
+import 'package:oda/components/categoryItem.dart';
 import 'package:oda/components/access.dart';
 import 'package:oda/components/customBackButton.dart';
+import 'package:oda/components/searchBox.dart';
 import 'package:oda/constants.dart';
 
 class BreakFast extends StatefulWidget {
@@ -16,44 +17,44 @@ class _BreakFastState extends State<BreakFast> {
   // Data structure for categories
   final List<Map<String, dynamic>> categories = [
     {
-      'name': 'Category 1',
-      'navigationLink': '/category1',
-      'imagePath': 'assets/branding/food_plate.png',
+      'name': 'Promos',
+      'navigationLink': '/promos',
+      'imagePath': 'assets/branding/menu/Promos.png',
     },
     {
-      'name': 'Category 2',
-      'navigationLink': '/category2',
-      'imagePath': 'assets/branding/food_plate.png',
+      'name': 'Near Me',
+      'navigationLink': '/near_me',
+      'imagePath': 'assets/branding/menu/Near Me.png',
     },
     {
-      'name': 'Category 3',
-      'navigationLink': '/category3',
-      'imagePath': 'assets/branding/food_plate.png',
+      'name': 'Open 24Hrs',
+      'navigationLink': '/open_24hrs',
+      'imagePath': 'assets/branding/menu/Open 24Hrs.png',
     },
     {
-      'name': 'Category 4',
-      'navigationLink': '/category4',
-      'imagePath': 'assets/branding/food_plate.png',
+      'name': 'Local Food',
+      'navigationLink': '/local_food',
+      'imagePath': 'assets/branding/menu/Local Food.png',
     },
     {
-      'name': 'Category 5',
-      'navigationLink': '/category5',
-      'imagePath': 'assets/branding/food_plate.png',
+      'name': 'Pizza',
+      'navigationLink': '/pizza',
+      'imagePath': 'assets/branding/menu/Pizza.png',
     },
     {
-      'name': 'Category 6',
-      'navigationLink': '/category6',
-      'imagePath': 'assets/branding/food_plate.png',
+      'name': 'Burgers',
+      'navigationLink': '/burgers',
+      'imagePath': 'assets/branding/menu/Burgers.png',
     },
     {
-      'name': 'Category 7',
-      'navigationLink': '/category7',
-      'imagePath': 'assets/branding/food_plate.png',
+      'name': 'Fast Foods',
+      'navigationLink': '/fast_foods',
+      'imagePath': 'assets/branding/menu/Fast Foods.png',
     },
     {
-      'name': 'Category 8',
-      'navigationLink': '/category8',
-      'imagePath': 'assets/branding/food_plate.png',
+      'name': 'Halal',
+      'navigationLink': '/halal',
+      'imagePath': 'assets/branding/menu/Halal.png',
     },
   ];
 
@@ -63,6 +64,7 @@ class _BreakFastState extends State<BreakFast> {
       body: SafeArea(
         child: Column(
           children: [
+            // Header with back button and access widget
             Padding(
               padding: EdgeInsets.all(20),
               child: Row(
@@ -70,45 +72,16 @@ class _BreakFastState extends State<BreakFast> {
                 children: [CustomBackButton(), Access()],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'What do you want to oda today?',
-                  hintStyle: AppTextStyles.body.copyWith(
-                    color: AppColors.textSecondary,
-                  ),
-                  prefixIcon: Icon(
-                    Feather.search,
-                    color: AppColors.secondary,
-                    size: 30,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: AppColors.secondary.withOpacity(0.2),
-                      width: 1.5,
-                    ),
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: AppColors.secondary,
-                      width: 2,
-                    ),
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                ),
-              ),
-            ),
-
+            // Search TextField
+            SearchBox(),
             //Category Grid
             Expanded(
               child: GridView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 10),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 4,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 5,
+                  crossAxisSpacing: 0,
                   childAspectRatio: 0.8, // More vertical space for image+text
                 ),
                 itemCount: categories.length,
@@ -122,9 +95,16 @@ class _BreakFastState extends State<BreakFast> {
                 },
               ),
             ),
-
-            //End of Category Grid
-            SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Restaurant', style: AppTextStyles.bodyTitle),
+                  Text('See all', style: AppTextStyles.body),
+                ],
+              ),
+            ),
             Center(child: Text('Welcome to the Breakfast Page!')),
           ],
         ),

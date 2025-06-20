@@ -19,24 +19,14 @@ class CategoryItem extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         // Placeholder for image
-        Container(
-          height: 48,
-          width: 48,
-          decoration: BoxDecoration(
-            color: AppColors.secondary.withOpacity(0.1),
-            shape: BoxShape.circle,
-          ),
-          child: Image.asset(
-            imagePath,
-            width: 32,
-            height: 32,
-            color: AppColors.secondary,
-          ),
-        ),
+        Image.asset(imagePath, width: 65, height: 65),
         SizedBox(height: 8),
         Text(
           name,
-          style: AppTextStyles.body.copyWith(color: AppColors.textPrimary),
+          style: AppTextStyles.bodyTitle2.copyWith(
+            color: AppColors.textPrimary,
+            fontSize: 14,
+          ),
           textAlign: TextAlign.center,
         ),
       ],
