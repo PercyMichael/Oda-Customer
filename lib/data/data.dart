@@ -1,6 +1,7 @@
 import 'package:oda/models/category.dart';
 import 'package:oda/models/restaurant.dart';
 import 'package:oda/models/last_order_item.dart';
+import 'package:oda/models/product.dart';
 
 final List<Category> categories = [
   Category(
@@ -68,12 +69,36 @@ final List<Restaurant> restaurants = [
   ),
 ];
 
+final List<Product> products = [
+  Product(
+    name: 'Streetwise 3',
+    price: 18000.0,
+    imagePath: 'assets/branding/restaurants/foods/kfc_food.png',
+  ),
+  Product(
+    name: 'Streetwise 4',
+    price: 36000.0,
+    imagePath: 'assets/branding/restaurants/foods/kfc_food.png',
+  ),
+  Product(
+    name: 'Fries',
+    price: 5000.0,
+    imagePath: 'assets/branding/restaurants/foods/kfc_food.png',
+  ),
+  Product(
+    name: 'Coke',
+    price: 2000.0,
+    imagePath: 'assets/branding/restaurants/foods/kfc_food.png',
+  ),
+];
+
 final List<LastOrderItem> lastOrders = [
   LastOrderItem(
     itemName: 'Chicken Bucket',
     rating: 4.5,
     restaurantName: 'KFC',
-    deliveryTime: '20-30 min',
+    deliveryTime: '20-30 Min',
+    deliveryFee: 'Ugx 1,000',
     productRating: 4.2,
     imagePath: 'assets/branding/last_order.png',
     restaurantLogo: 'assets/branding/restaurants/kfc.png',
@@ -82,7 +107,8 @@ final List<LastOrderItem> lastOrders = [
     itemName: 'Margherita Pizza',
     rating: 4.0,
     restaurantName: 'Pizza Hut',
-    deliveryTime: '25-35 min',
+    deliveryTime: '25-35 Min',
+    deliveryFee: 'Ugx 2,000',
     productRating: 3.8,
     imagePath: 'assets/branding/last_order.png',
     restaurantLogo: 'assets/branding/restaurants/72.png',
@@ -91,7 +117,18 @@ final List<LastOrderItem> lastOrders = [
     itemName: 'Beef Burger',
     rating: 3.8,
     restaurantName: 'Burger King',
-    deliveryTime: '15-25 min',
+    deliveryFee: 'Ugx 1,500',
+    deliveryTime: '15-25 Min',
+    productRating: 4.0,
+    imagePath: 'assets/branding/last_order.png',
+    restaurantLogo: 'assets/branding/restaurants/chicken2night.png',
+  ),
+  LastOrderItem(
+    itemName: 'Beef Burger',
+    rating: 3.8,
+    restaurantName: 'Burger King',
+    deliveryFee: 'Ugx 1,500',
+    deliveryTime: '15-25 Min',
     productRating: 4.0,
     imagePath: 'assets/branding/last_order.png',
     restaurantLogo: 'assets/branding/restaurants/chicken2night.png',

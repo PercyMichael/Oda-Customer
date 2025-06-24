@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:oda/constants.dart';
 import 'package:oda/models/last_order_item.dart';
 
@@ -38,13 +39,14 @@ class LastOrderCard extends StatelessWidget {
                     vertical: 4,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.green.withOpacity(0.85),
-                    borderRadius: BorderRadius.circular(8),
+                    color: AppColors.secondary,
+                    borderRadius: BorderRadius.circular(30),
                   ),
                   child: Text(
                     lastOrderItem.itemName,
                     style: const TextStyle(
                       color: Colors.white,
+                      overflow: TextOverflow.ellipsis,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                     ),
@@ -56,16 +58,13 @@ class LastOrderCard extends StatelessWidget {
                 top: 8,
                 right: 8,
                 child: Container(
+                  height: 35,
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.8),
+                    color: Colors.white,
                     shape: BoxShape.circle,
                   ),
                   child: IconButton(
-                    icon: const Icon(
-                      Icons.favorite_border,
-                      color: Colors.red,
-                      size: 20,
-                    ),
+                    icon: const Icon(Icons.favorite_border, size: 20),
                     onPressed: () {
                       // Add to favourites logic here
                     },
@@ -74,21 +73,28 @@ class LastOrderCard extends StatelessWidget {
               ),
               // Rating with star (bottom left)
               Positioned(
-                bottom: 8,
-                left: 8,
+                bottom: 0,
+                left: 0,
                 child: Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 8,
                     vertical: 4,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.7),
-                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.deepOrange,
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
+                    ),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.star, color: Colors.amber, size: 16),
+                      const Icon(
+                        MaterialCommunityIcons.star_circle,
+                        color: AppColors.white,
+                        size: 16,
+                      ),
                       const SizedBox(width: 4),
                       Text(
                         lastOrderItem.rating.toStringAsFixed(1),
@@ -128,7 +134,7 @@ class LastOrderCard extends StatelessWidget {
             children: [
               Icon(Icons.delivery_dining, color: AppColors.primary, size: 18),
               Text(
-                '${lastOrderItem.deliveryTime} ● ${lastOrderItem.productRating}',
+                '${lastOrderItem.deliveryFee} ● ${lastOrderItem.deliveryTime}',
                 style: AppTextStyles.body.copyWith(
                   fontSize: 12,
                   color: AppColors.primary,

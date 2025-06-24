@@ -7,30 +7,21 @@ class SearchBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: TextField(
-        decoration: InputDecoration(
-          hintText: 'What do you want to oda today?',
-          hintStyle: AppTextStyles.body.copyWith(
-            color: AppColors.textSecondary,
+    return TextField(
+      decoration: InputDecoration(
+        hintText: 'What do you want to oda today?',
+        hintStyle: AppTextStyles.body.copyWith(color: AppColors.textSecondary),
+        prefixIcon: Icon(Feather.search, color: AppColors.secondary, size: 30),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.secondary.withOpacity(0.2),
+            width: 1.5,
           ),
-          prefixIcon: Icon(
-            Feather.search,
-            color: AppColors.secondary,
-            size: 30,
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: AppColors.secondary.withOpacity(0.2),
-              width: 1.5,
-            ),
-            borderRadius: BorderRadius.circular(100),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.secondary, width: 2),
-            borderRadius: BorderRadius.circular(100),
-          ),
+          borderRadius: BorderRadius.circular(100),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.secondary, width: 2),
+          borderRadius: BorderRadius.circular(100),
         ),
       ),
     );

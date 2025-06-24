@@ -5,7 +5,7 @@ import 'package:oda/screens/auth/login.dart';
 import 'package:oda/screens/auth/onboard.dart';
 import 'package:oda/screens/break_fast.dart';
 import 'package:oda/screens/home.dart';
-import 'package:oda/screens/restaurant_details.dart';
+import 'package:oda/screens/restaurant_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/break_fast', page: () => BreakFast()),
 
         //restaurant details
-        GetPage(name: '/restaurant_details', page: () => RestaurantDetails()),
+        GetPage(name: '/restaurant_page', page: () => RestaurantPage()),
       ],
     );
   }

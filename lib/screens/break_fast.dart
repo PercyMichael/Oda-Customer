@@ -84,7 +84,7 @@ class _BreakFastState extends State<BreakFast> {
                         return GestureDetector(
                           onTap: () {
                             Get.toNamed(
-                              '/restaurant_details',
+                              '/restaurant_page',
                               parameters: {'restaurantName': restaurant.name},
                             );
                           },
@@ -114,6 +114,78 @@ class _BreakFastState extends State<BreakFast> {
                     final lastOrderItem = data.lastOrders[index];
                     return LastOrderCard(lastOrderItem: lastOrderItem);
                   },
+                ),
+
+                //special offers section
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Stack(
+                    children: [
+                      // Background image container
+                      Container(
+                        padding: const EdgeInsets.all(20),
+                        width: double.infinity,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: DecorationImage(
+                            alignment: Alignment.center,
+                            image: AssetImage('assets/branding/last_order.png'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      // Overlay
+                      Container(
+                        width: double.infinity,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.black.withOpacity(0.4),
+                        ),
+                      ),
+                      // Content
+                      Container(
+                        padding: const EdgeInsets.all(20),
+                        width: double.infinity,
+                        height: 200,
+                        child: Column(
+                          spacing: 10,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Special Discount',
+                              style: AppTextStyles.bodyTitle.copyWith(
+                                color: Colors.white,
+                              ),
+                            ),
+                            Text(
+                              'Up to 75% Off',
+                              style: AppTextStyles.title.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                            Container(
+                              child: Text(
+                                'On First Order',
+                                style: AppTextStyles.bodyTitle,
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: AppColors.white,
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 5,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
