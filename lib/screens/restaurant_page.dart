@@ -7,6 +7,7 @@ import 'package:oda/components/shareButton.dart';
 import 'package:oda/constants.dart';
 import 'package:oda/data/data.dart' as data;
 import 'package:oda/models/product.dart';
+import 'package:oda/models/restaurant.dart';
 
 class FoodCategory {
   final String category;
@@ -25,7 +26,8 @@ final dataCategories = [
 ];
 
 class RestaurantPage extends StatefulWidget {
-  const RestaurantPage({Key? key}) : super(key: key);
+  final Restaurant restaurant;
+  const RestaurantPage({Key? key, required this.restaurant}) : super(key: key);
 
   @override
   State<RestaurantPage> createState() => _RestaurantPageState();
@@ -136,48 +138,46 @@ class _RestaurantPageState extends State<RestaurantPage>
             backgroundColor: Colors.white,
             centerTitle: true,
             leading: Padding(
-              child: CustomBackButton(),
               padding: EdgeInsets.only(left: 15),
+              child: CustomBackButton(),
             ),
             actions: [
               Padding(
-                child: ShareButton(),
                 padding: EdgeInsets.symmetric(horizontal: 15),
+                child: ShareButton(),
               ),
             ],
-            title: const Text('KFC'),
+            title: Text(widget.restaurant.name),
             flexibleSpace: FlexibleSpaceBar(
               background: Column(
-                spacing: 30,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Stack(
                     children: [
                       Image.asset(
-                        'assets/branding/restaurant_cover.png',
+                        widget.restaurant.imageCover,
                         height: 200,
                         width: double.infinity,
                         fit: BoxFit.cover,
                       ),
                     ],
                   ),
-
+                  SizedBox(height: 30),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
-                      spacing: 30,
                       children: [
                         Row(
                           children: [
-                            Image.asset(
-                              'assets/branding/restaurants/kfc.png',
-                              width: 60,
-                            ),
+                            Image.asset(widget.restaurant.logo, width: 60),
                             const SizedBox(width: 15),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('KFC', style: AppTextStyles.bodyTitle),
+                                Text(
+                                  widget.restaurant.name,
+                                  style: AppTextStyles.bodyTitle,
+                                ),
                                 Row(
                                   children: [
                                     Icon(
@@ -185,7 +185,7 @@ class _RestaurantPageState extends State<RestaurantPage>
                                       color: AppColors.secondary,
                                     ),
                                     Text(
-                                      'Kyanja Branch',
+                                      widget.restaurant.location,
                                       style: AppTextStyles.body,
                                     ),
                                   ],
@@ -194,9 +194,9 @@ class _RestaurantPageState extends State<RestaurantPage>
                             ),
                           ],
                         ),
-
-                        RestaurantStats(),
-
+                        SizedBox(height: 30),
+                        RestaurantStats(restaurant: widget.restaurant),
+                        SizedBox(height: 30),
                         const SearchBox(),
                       ],
                     ),

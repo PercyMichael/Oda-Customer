@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:oda/constants.dart';
 import 'package:oda/models/last_order_item.dart';
+import 'package:intl/intl.dart';
 
 class LastOrderCard extends StatelessWidget {
   const LastOrderCard({Key? key, required this.lastOrderItem})
@@ -134,7 +135,7 @@ class LastOrderCard extends StatelessWidget {
             children: [
               Icon(Icons.delivery_dining, color: AppColors.primary, size: 18),
               Text(
-                '${lastOrderItem.deliveryFee} ● ${lastOrderItem.deliveryTime}',
+                'Ugx ${NumberFormat("#,###").format(lastOrderItem.deliveryFee)} ● ${lastOrderItem.deliveryTime} Min',
                 style: AppTextStyles.body.copyWith(
                   fontSize: 12,
                   color: AppColors.primary,

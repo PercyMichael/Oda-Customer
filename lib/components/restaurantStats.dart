@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:oda/constants.dart';
+import 'package:oda/models/restaurant.dart';
+import 'package:intl/intl.dart';
 
 class RestaurantStats extends StatelessWidget {
-  const RestaurantStats({super.key});
+  final Restaurant restaurant;
+  const RestaurantStats({super.key, required this.restaurant});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      spacing: 20,
       children: [
         Row(
-          spacing: 8,
           children: [
             CircleAvatar(
               backgroundColor: Colors.deepOrange,
@@ -19,11 +20,12 @@ class RestaurantStats extends StatelessWidget {
               radius: 20,
               child: Icon(Icons.star_rounded, size: 30),
             ),
+            SizedBox(width: 8),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '4.7',
+                  restaurant.rating.toString(),
                   style: AppTextStyles.bodyTitle.copyWith(fontSize: 14),
                 ),
                 Text(
@@ -35,7 +37,6 @@ class RestaurantStats extends StatelessWidget {
           ],
         ),
         Row(
-          spacing: 8,
           children: [
             CircleAvatar(
               backgroundColor: AppColors.primary,
@@ -43,11 +44,12 @@ class RestaurantStats extends StatelessWidget {
               radius: 20,
               child: Icon(Icons.delivery_dining, size: 30),
             ),
+            SizedBox(width: 8),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'UGX 3,200',
+                  'Ugx ${NumberFormat("#,###").format(restaurant.deliveryFee)}',
                   style: AppTextStyles.bodyTitle.copyWith(fontSize: 14),
                 ),
                 Text(
@@ -59,7 +61,6 @@ class RestaurantStats extends StatelessWidget {
           ],
         ),
         Row(
-          spacing: 8,
           children: [
             CircleAvatar(
               backgroundColor: AppColors.secondary,
@@ -67,11 +68,12 @@ class RestaurantStats extends StatelessWidget {
               radius: 20,
               child: Icon(Icons.access_time_rounded, size: 30),
             ),
+            SizedBox(width: 8),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "10 -15'",
+                  "${restaurant.deliveryTime.toString()}'",
                   style: AppTextStyles.bodyTitle.copyWith(fontSize: 14),
                 ),
                 Text(

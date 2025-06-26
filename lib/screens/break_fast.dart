@@ -29,7 +29,7 @@ class _BreakFastState extends State<BreakFast> {
         child: SingleChildScrollView(
           child: Container(
             child: Column(
-              spacing: 20,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 // Header with back button and access widget
                 Padding(
@@ -41,6 +41,7 @@ class _BreakFastState extends State<BreakFast> {
                 ),
                 // Search TextField
                 SearchBox(),
+                SizedBox(height: 20),
                 //Category Grid
                 GridView.builder(
                   padding: EdgeInsets.symmetric(horizontal: 10),
@@ -62,7 +63,7 @@ class _BreakFastState extends State<BreakFast> {
                     );
                   },
                 ),
-
+                SizedBox(height: 20),
                 // Restaurant Grid
                 Column(
                   children: [
@@ -85,18 +86,16 @@ class _BreakFastState extends State<BreakFast> {
                           onTap: () {
                             Get.toNamed(
                               '/restaurant_page',
-                              parameters: {'restaurantName': restaurant.name},
+                              arguments: restaurant,
                             );
                           },
-                          child: RestaurantCard(
-                            restaurant: restaurant.toJson(),
-                          ),
+                          child: RestaurantCard(restaurant: restaurant),
                         );
                       },
                     ),
                   ],
                 ),
-
+                SizedBox(height: 20),
                 //From Last order section
                 SectionTitle(title: 'From Last Order'),
                 GridView.builder(
@@ -115,7 +114,7 @@ class _BreakFastState extends State<BreakFast> {
                     return LastOrderCard(lastOrderItem: lastOrderItem);
                   },
                 ),
-
+                SizedBox(height: 20),
                 //special offers section
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -150,7 +149,6 @@ class _BreakFastState extends State<BreakFast> {
                         width: double.infinity,
                         height: 200,
                         child: Column(
-                          spacing: 10,
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -167,6 +165,7 @@ class _BreakFastState extends State<BreakFast> {
                                 fontWeight: FontWeight.w900,
                               ),
                             ),
+                            SizedBox(height: 10),
                             Container(
                               child: Text(
                                 'On First Order',

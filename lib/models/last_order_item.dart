@@ -3,7 +3,7 @@ class LastOrderItem {
   final double rating;
   final String restaurantName;
   final String deliveryTime;
-  final String deliveryFee;
+  final num deliveryFee;
   final double productRating;
   final String imagePath;
   final String restaurantLogo;
