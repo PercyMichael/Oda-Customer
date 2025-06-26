@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:oda/components/customBackButton.dart';
 import 'package:oda/constants.dart';
 import 'package:oda/components/quantity_control.dart';
 import 'package:intl/intl.dart';
@@ -36,7 +37,14 @@ class _ProductPageState extends State<ProductPage> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 237, 252, 252),
       extendBodyBehindAppBar: true,
-      appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: Padding(
+          padding: EdgeInsets.only(left: 15),
+          child: CustomBackButton(),
+        ),
+      ),
       body: Stack(
         children: [
           Image.asset(

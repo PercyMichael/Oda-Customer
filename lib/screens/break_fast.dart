@@ -40,7 +40,10 @@ class _BreakFastState extends State<BreakFast> {
                   ),
                 ),
                 // Search TextField
-                SearchBox(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: SearchBox(),
+                ),
                 SizedBox(height: 20),
                 //Category Grid
                 GridView.builder(
