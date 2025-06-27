@@ -21,7 +21,7 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-  final CartService _cartService = Get.put(CartService());
+  final CartService _cartService = Get.find<CartService>();
   int _quantity = 1;
   late double _price;
   final Map<String, List<Topping>> _selectedToppings = {};
@@ -142,9 +142,31 @@ class _ProductPageState extends State<ProductPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(productName, style: AppTextStyles.bodyTitle),
-                      Text(
-                        'Ugx ${NumberFormat("#,###").format(productPrice.round())}',
-                        style: AppTextStyles.bodyTitle,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          if (_product?.discount != null &&
+                              _product!.discount > 0) ...[
+                            Text(
+                              'Ugx ${NumberFormat("#,###").format(productPrice.round())}',
+                              style: AppTextStyles.body.copyWith(
+                                decoration: TextDecoration.lineThrough,
+                                color: AppColors.grey,
+                              ),
+                            ),
+                            Text(
+                              '${(_product!.discount * 100).toInt()}% OFF',
+                              style: AppTextStyles.bodySmall.copyWith(
+                                color: AppColors.red,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                          Text(
+                            'Ugx ${NumberFormat("#,###").format((productPrice * (1 - (_product?.discount ?? 0.0))).round())}',
+                            style: AppTextStyles.bodyTitle,
+                          ),
+                        ],
                       ),
                     ],
                   ),

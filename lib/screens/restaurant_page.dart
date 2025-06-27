@@ -240,7 +240,7 @@ class _RestaurantPageState extends State<RestaurantPage>
                     crossAxisCount: 2,
                     crossAxisSpacing: 12,
                     mainAxisSpacing: 12,
-                    childAspectRatio: 0.75,
+                    childAspectRatio: 0.65,
                   ),
                 ),
               ),

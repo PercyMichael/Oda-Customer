@@ -211,6 +211,7 @@ final List<Product> products = [
       ...sauceToppings,
       ...sideToppings,
     ],
+    discount: 0.10, // 10% discount
   ),
   Product(
     id: 2,
@@ -225,6 +226,7 @@ final List<Product> products = [
       ...sauceToppings,
       ...sideToppings,
     ],
+    discount: 0.05, // 5% discount
   ),
   Product(
     id: 3,
@@ -233,6 +235,7 @@ final List<Product> products = [
     imagePath: 'assets/branding/restaurants/foods/kfc_food.png',
     details: 'Crispy golden fries, perfect as a side or a snack.',
     toppings: [...recipeToppings, ...sauceToppings],
+    discount: 0.0, // No discount
   ),
   Product(
     id: 4,
@@ -241,6 +244,7 @@ final List<Product> products = [
     imagePath: 'assets/branding/cola.jpg',
     details: 'Refreshing Coca-Cola to quench your thirst.',
     toppings: [...drinkToppings],
+    discount: 0.0, // No discount
   ),
 ];
 

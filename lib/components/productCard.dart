@@ -64,13 +64,34 @@ class ProductCard extends StatelessWidget {
               ],
             ),
           ),
-          Text(
-            'Ugx ${NumberFormat("#,###").format(product.price)}',
-            style: const TextStyle(
-              color: Colors.black,
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (product.discount > 0) ...[
+                Text(
+                  'Ugx ${NumberFormat("#,###").format(product.price)}',
+                  style: AppTextStyles.bodySmall.copyWith(
+                    decoration: TextDecoration.lineThrough,
+                    color: AppColors.grey,
+                  ),
+                ),
+                Text(
+                  '${(product.discount * 100).toInt()}% OFF',
+                  style: AppTextStyles.bodySmall.copyWith(
+                    color: AppColors.red,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+              Text(
+                'Ugx ${NumberFormat("#,###").format((product.price * (1 - product.discount)).round())}',
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
         ],
       ),

@@ -5,12 +5,24 @@ class QuantityControl extends StatefulWidget {
   final int initialQuantity;
   final double initialPrice;
   final Function(int) onQuantityChanged;
+  final double iconSize;
+  final EdgeInsetsGeometry buttonPadding;
+  final Size buttonMinSize;
+  final double textFontSize;
+  final double textMinWidth;
+  final double textMaxWidth;
 
   const QuantityControl({
     Key? key,
     required this.initialQuantity,
     required this.initialPrice,
     required this.onQuantityChanged,
+    this.iconSize = 20,
+    this.buttonPadding = const EdgeInsets.all(6),
+    this.buttonMinSize = const Size(30, 30),
+    this.textFontSize = 16,
+    this.textMinWidth = 15.0,
+    this.textMaxWidth = 30.0,
   }) : super(key: key);
 
   @override
@@ -43,29 +55,42 @@ class _QuantityControlState extends State<QuantityControl> {
       children: [
         IconButton(
           onPressed: _quantity > 1 ? () => _updateQuantity(-1) : null,
-          icon: const Icon(Icons.remove, color: AppColors.secondary),
+          icon: Icon(
+            Icons.remove,
+            color: AppColors.secondary,
+            size: widget.iconSize,
+          ),
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(Colors.grey[300]),
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             ),
-            padding: MaterialStateProperty.all(const EdgeInsets.all(8)),
-            minimumSize: MaterialStateProperty.all(const Size(35, 35)),
+            padding: MaterialStateProperty.all(widget.buttonPadding),
+            minimumSize: MaterialStateProperty.all(widget.buttonMinSize),
           ),
         ),
-        const SizedBox(width: 10),
-        Text('$_quantity', style: AppTextStyles.bodyTitle),
-        const SizedBox(width: 10),
+        SizedBox(width: widget.buttonPadding.horizontal / 2),
+        Flexible(
+          child: Text(
+            '$_quantity',
+            style: AppTextStyles.bodyTitle.copyWith(
+              fontSize: widget.textFontSize,
+            ),
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+        SizedBox(width: widget.buttonPadding.horizontal / 2),
         IconButton(
           onPressed: () => _updateQuantity(1),
-          icon: const Icon(Icons.add, color: AppColors.white),
+          icon: Icon(Icons.add, color: AppColors.white, size: widget.iconSize),
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(AppColors.secondary),
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             ),
-            padding: MaterialStateProperty.all(const EdgeInsets.all(8)),
-            minimumSize: MaterialStateProperty.all(const Size(35, 35)),
+            padding: MaterialStateProperty.all(widget.buttonPadding),
+            minimumSize: MaterialStateProperty.all(widget.buttonMinSize),
           ),
         ),
       ],

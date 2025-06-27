@@ -7,6 +7,7 @@ class Product {
   final String imagePath;
   final String? details; // New field for product details
   final List<Topping>? toppings;
+  final double discount; // New field for product discount
 
   Product({
     required this.id,
@@ -15,6 +16,7 @@ class Product {
     required this.imagePath,
     this.details, // Make it optional
     this.toppings,
+    this.discount = 0.0, // Default to no discount
   });
 
   @override

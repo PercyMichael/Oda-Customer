@@ -11,8 +11,12 @@ import 'package:oda/models/restaurant.dart';
 import 'package:oda/models/product.dart';
 import 'package:oda/data/data.dart';
 import 'package:oda/screens/cart_page.dart';
+import 'package:oda/screens/checkout_page.dart';
+
+import 'package:oda/services/cart_service.dart';
 
 void main() {
+  Get.put(CartService()); // Register CartService as a persistent dependency
   runApp(const MyApp());
 }
 
@@ -57,6 +61,7 @@ class MyApp extends StatelessWidget {
           }, // Pass a default product for testing
         ),
         GetPage(name: '/cart_page', page: () => CartPage()),
+        GetPage(name: '/checkout_page', page: () => CheckoutPage()),
       ],
     );
   }
