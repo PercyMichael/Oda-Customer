@@ -14,10 +14,7 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(
-          '/product_page',
-          arguments: {'productName': product.name, 'price': product.price},
-        );
+        Get.toNamed('/product_page', arguments: {'product': product});
       },
       child: Column(
         spacing: 10,

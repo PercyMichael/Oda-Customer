@@ -11,6 +11,7 @@ class AppColors {
   static const Color background = Color(0xFFFFFFFF);
   static const Color textPrimary = Color(0xFF212121);
   static const Color textSecondary = Color(0xFF757575);
+  static const Color black = Color(0xFF000000);
 }
 
 class AppSpacing {
@@ -44,6 +45,11 @@ class AppTextStyles {
   static final TextStyle body = GoogleFonts.poppins(
     fontSize: 16,
     color: AppColors.textSecondary,
+  );
+
+  static final TextStyle bodySmall = GoogleFonts.poppins(
+    fontSize: 14,
+    color: AppColors.grey,
   );
 
   static final TextStyle button = GoogleFonts.poppins(

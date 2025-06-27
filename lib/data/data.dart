@@ -2,6 +2,7 @@ import 'package:oda/models/category.dart';
 import 'package:oda/models/restaurant.dart';
 import 'package:oda/models/last_order_item.dart';
 import 'package:oda/models/product.dart';
+import 'package:oda/models/topping.dart';
 
 final List<Category> categories = [
   Category(
@@ -88,26 +89,158 @@ final List<Restaurant> restaurants = [
   ),
 ];
 
+final List<Topping> drinkToppings = [
+  Topping(
+    id: 101,
+    name: 'Coca-Cola',
+    price: 2000,
+    type: 'drink',
+    selectionType: 'single',
+    isRequired: true, // Example: Coca-Cola is required
+  ),
+  Topping(
+    id: 102,
+    name: 'Sprite',
+    price: 2000,
+    type: 'drink',
+    selectionType: 'single',
+    isRequired: false,
+  ),
+  Topping(
+    id: 103,
+    name: 'Fanta',
+    price: 2000,
+    type: 'drink',
+    selectionType: 'single',
+    isRequired: false,
+  ),
+];
+
+final List<Topping> recipeToppings = [
+  Topping(
+    id: 201,
+    name: 'Extra Cheese',
+    price: 1500,
+    type: 'recipe',
+    selectionType: 'multiple',
+    isRequired: false,
+  ),
+  Topping(
+    id: 202,
+    name: 'Bacon Bits',
+    price: 2500,
+    type: 'recipe',
+    selectionType: 'multiple',
+    isRequired: false,
+  ),
+  Topping(
+    id: 203,
+    name: 'Mushrooms',
+    price: 1000,
+    type: 'recipe',
+    selectionType: 'multiple',
+    isRequired: false,
+  ),
+];
+
+final List<Topping> sauceToppings = [
+  Topping(
+    id: 301,
+    name: 'Ketchup',
+    price: 500,
+    type: 'sauce',
+    selectionType: 'single',
+    isRequired: false,
+  ),
+  Topping(
+    id: 302,
+    name: 'Mayonnaise',
+    price: 500,
+    type: 'sauce',
+    selectionType: 'single',
+    isRequired: false,
+  ),
+  Topping(
+    id: 303,
+    name: 'BBQ Sauce',
+    price: 700,
+    type: 'sauce',
+    selectionType: 'single',
+    isRequired: false,
+  ),
+];
+
+final List<Topping> sideToppings = [
+  Topping(
+    id: 401,
+    name: 'Coleslaw',
+    price: 1200,
+    type: 'side',
+    selectionType: 'multiple',
+    isRequired: true, // At least one side is required
+  ),
+  Topping(
+    id: 402,
+    name: 'Corn on the Cob',
+    price: 1500,
+    type: 'side',
+    selectionType: 'multiple',
+    isRequired: true, // At least one side is required
+  ),
+  Topping(
+    id: 403,
+    name: 'Mashed Potatoes',
+    price: 1000,
+    type: 'side',
+    selectionType: 'multiple',
+    isRequired: true, // At least one side is required
+  ),
+];
+
 final List<Product> products = [
   Product(
+    id: 1,
     name: 'Streetwise 3',
     price: 18000,
     imagePath: 'assets/branding/restaurants/foods/kfc_food.png',
+    details:
+        'A delicious meal with 3 pieces of chicken, fries, and a drink. Perfect for a quick bite.',
+    toppings: [
+      ...drinkToppings,
+      ...recipeToppings,
+      ...sauceToppings,
+      ...sideToppings,
+    ],
   ),
   Product(
+    id: 2,
     name: 'Streetwise 4',
     price: 36000,
     imagePath: 'assets/branding/restaurants/foods/kfc_food.png',
+    details:
+        'A hearty meal with 4 pieces of chicken, large fries, and two drinks. Great for sharing!',
+    toppings: [
+      ...drinkToppings,
+      ...recipeToppings,
+      ...sauceToppings,
+      ...sideToppings,
+    ],
   ),
   Product(
+    id: 3,
     name: 'Fries',
     price: 5000,
     imagePath: 'assets/branding/restaurants/foods/kfc_food.png',
+    details: 'Crispy golden fries, perfect as a side or a snack.',
+    toppings: [...recipeToppings, ...sauceToppings],
   ),
   Product(
+    id: 4,
     name: 'Coke',
     price: 2000,
-    imagePath: 'assets/branding/restaurants/foods/kfc_food.png',
+    imagePath: 'assets/branding/cola.jpg',
+    details: 'Refreshing Coca-Cola to quench your thirst.',
+    toppings: [...drinkToppings],
   ),
 ];
 

@@ -11,7 +11,7 @@ class CategoryMenu extends StatefulWidget {
 }
 
 class _CategoryMenuState extends State<CategoryMenu> {
-  int selectedIndex = 1; // Default selected: Meals
+  int selectedIndex = 0; // Default selected: Breakfast
 
   final List<Map<String, dynamic>> categories = [
     {'icon': Icons.free_breakfast, 'label': 'Breakfast'},

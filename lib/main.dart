@@ -8,6 +8,9 @@ import 'package:oda/screens/home.dart';
 import 'package:oda/screens/product_page.dart';
 import 'package:oda/screens/restaurant_page.dart';
 import 'package:oda/models/restaurant.dart';
+import 'package:oda/models/product.dart';
+import 'package:oda/data/data.dart';
+import 'package:oda/screens/cart_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -46,7 +49,14 @@ class MyApp extends StatelessWidget {
         ),
 
         //product page
-        GetPage(name: '/product_page', page: () => ProductPage()),
+        GetPage(
+          name: '/product_page',
+          page: () => ProductPage(),
+          arguments: {
+            'product': products[0],
+          }, // Pass a default product for testing
+        ),
+        GetPage(name: '/cart_page', page: () => CartPage()),
       ],
     );
   }

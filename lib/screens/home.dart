@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     {'icon': Icons.more_horiz, 'label': 'Others'},
   ];
 
-  int selectedCategoryIndex = -1; // Default: no category selected
+  int selectedCategoryIndex = 0; // Default: Breakfast selected
 
   void _onCategorySelected(int index) {
     setState(() {
