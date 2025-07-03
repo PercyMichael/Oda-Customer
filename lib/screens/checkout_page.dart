@@ -1,13 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:oda/components/customBackButton.dart';
+import 'package:oda/components/checkout_footer.dart';
+import 'package:oda/components/delivery_details_card.dart';
+import 'package:oda/components/delivery_time_card.dart';
+import 'package:oda/components/allergies_and_cutlery_section.dart';
+import 'package:oda/components/payment_details_card.dart';
 import 'package:oda/constants.dart';
 import 'package:oda/services/cart_service.dart';
+import 'package:oda/components/order_item.dart';
 
-class CheckoutPage extends StatelessWidget {
-  CheckoutPage({Key? key}) : super(key: key);
+class CheckoutPage extends StatefulWidget {
+  const CheckoutPage({super.key});
 
+  @override
+  State<CheckoutPage> createState() => _CheckoutPageState();
+}
+
+class _CheckoutPageState extends State<CheckoutPage> {
   final CartService _cartService = Get.find();
 
   @override
@@ -17,220 +29,135 @@ class CheckoutPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Padding(
-          padding: EdgeInsets.only(left: 15),
+          padding: const EdgeInsets.only(left: 15),
           child: CustomBackButton(),
         ),
         title: Text('Checkout', style: AppTextStyles.bodyTitle),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(20),
+        // padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Delivery Details', style: AppTextStyles.bodyTitle2),
-            SizedBox(height: 10),
-            Card(
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(Icons.location_on, color: AppColors.primary),
-                        SizedBox(width: 10),
-                        Expanded(
-                          child: Text(
-                            'Address: 123 Main St, City, Country',
-                            style: AppTextStyles.body,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 5),
-                    Row(
-                      children: [
-                        Icon(Icons.phone, color: AppColors.primary),
-                        SizedBox(width: 10),
-                        Text('Phone: +123 456 7890', style: AppTextStyles.body),
-                      ],
-                    ),
-                    SizedBox(height: 5),
-                    Row(
-                      children: [
-                        Icon(Icons.person, color: AppColors.primary),
-                        SizedBox(width: 10),
-                        Text('Name: John Doe', style: AppTextStyles.body),
-                      ],
-                    ),
-                    SizedBox(height: 15),
-                    // Placeholder for a small map
-                    Container(
-                      height: 150,
-                      decoration: BoxDecoration(
-                        color: AppColors.grey.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Small Map Placeholder',
-                          style: AppTextStyles.bodySmall.copyWith(
-                            color: AppColors.grey,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [SizedBox(height: 20)],
               ),
             ),
-            SizedBox(height: 20),
 
-            Text('Order Summary', style: AppTextStyles.bodyTitle2),
-            SizedBox(height: 10),
             Obx(
-              () => Card(
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+              () => ExpansionTile(
+                initiallyExpanded: true,
+                title: Text('Your Oda', style: AppTextStyles.bodyTitle),
+                subtitle: Text(
+                  '${_cartService.cartItems.fold<int>(0, (sum, item) => sum + item.quantity)} '
+                  '${_cartService.cartItems.fold<int>(0, (sum, item) => sum + item.quantity) == 1 ? 'item' : 'items'}',
+                  style: AppTextStyles.bodySmall,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Column(
-                    children:
-                        _cartService.cartItems.map((item) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 5.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    '${item.quantity}x ${item.product.name}',
-                                    style: AppTextStyles.body,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                                Text(
-                                  'Ugx ${NumberFormat("#,###").format(item.totalPrice.round())}',
-                                  style: AppTextStyles.body,
-                                ),
-                              ],
-                            ),
-                          );
-                        }).toList(),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 10),
-            Obx(
-              () => Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                childrenPadding: const EdgeInsets.symmetric(horizontal: 20.0),
                 children: [
-                  Text('Subtotal', style: AppTextStyles.bodyTitle),
-                  Text(
-                    'Ugx ${NumberFormat("#,###").format(_cartService.totalCartPrice.round())}',
-                    style: AppTextStyles.bodyTitle,
+                  Column(
+                    spacing: 10,
+                    children:
+                        _cartService.cartItems
+                            .map((item) => OrderItem(item: item))
+                            .toList(),
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 5),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Delivery Fee', style: AppTextStyles.body),
-                Text(
-                  'Ugx ${NumberFormat("#,###").format(5000)}',
-                  style: AppTextStyles.body,
-                ), // Example delivery fee
-              ],
-            ),
-            SizedBox(height: 20),
 
-            Text('Delivery Time', style: AppTextStyles.bodyTitle2),
-            SizedBox(height: 10),
-            Card(
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Text(
-                  'Estimated Delivery: 30-45 minutes',
-                  style: AppTextStyles.body,
-                ),
-              ),
-            ),
-            SizedBox(height: 20),
+            const SizedBox(height: 10),
+            const AllergiesAndCutlerySection(),
+            const SizedBox(height: 20),
 
-            Text('Payment Details', style: AppTextStyles.bodyTitle2),
-            SizedBox(height: 10),
-            Card(
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Payment Method: Cash on Delivery',
-                      style: AppTextStyles.body,
+            DeliveryDetailsCard(),
+
+            //order for someone
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              MaterialCommunityIcons.gift,
+                              color: AppColors.secondary,
+                            ),
+                            SizedBox(width: 10),
+                            Text(
+                              'Oda for someone else',
+                              style: AppTextStyles.bodyTitle,
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 5),
+                        Text(
+                          'Add their details to help our courier',
+                          style: AppTextStyles.bodySmall.copyWith(
+                            color: AppColors.grey,
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 5),
-                    Text(
-                      'Total: Ugx ${NumberFormat("#,###").format((_cartService.totalCartPrice + 5000).round())}',
-                      style: AppTextStyles.bodyTitle,
-                    ),
-                  ],
-                ),
+                  ),
+                  Icon(
+                    Icons.keyboard_arrow_right_outlined,
+                    color: AppColors.grey,
+                    size: 30,
+                  ),
+                ],
               ),
             ),
-            SizedBox(height: 20),
+
+            //delivery time
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      DeliveryTimeCard(
+                        icon: Icons.delivery_dining,
+                        iconColor: AppColors.red,
+                        title: '10 - 15 min',
+                        subtitle: 'Coming Asap!',
+                        backgroundColor: AppColors.red.withOpacity(0.1),
+                      ),
+                      SizedBox(width: 10),
+                      DeliveryTimeCard(
+                        icon: Icons.schedule,
+                        iconColor: AppColors.secondary,
+                        title: 'Schedule Delivery',
+                        subtitle: 'We deliver later',
+                        backgroundColor: AppColors.secondary.withOpacity(0.1),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+
+            //payment details
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20.0,
+                vertical: 20,
+              ),
+              child: PaymentDetailsCard(),
+            ),
+
+            //checkout footer
+            CheckoutFooter(),
           ],
-        ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        height: 88,
-        color: AppColors.white,
-        elevation: 1,
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5),
-          child: FilledButton(
-            onPressed: () {
-              // Implement final order placement logic here
-              _cartService.clearCart(); // Clear cart after successful order
-              Get.snackbar(
-                'Order Placed!',
-                'Your order has been placed successfully.',
-                snackPosition: SnackPosition.BOTTOM,
-                backgroundColor: Colors.green,
-                colorText: Colors.white,
-              );
-              Get.offAllNamed(
-                '/home',
-              ); // Navigate back to home or order confirmation
-            },
-            style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-              backgroundColor: AppColors.primary,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            child: Text('Place Order', style: AppTextStyles.button),
-          ),
         ),
       ),
     );

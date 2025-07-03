@@ -13,6 +13,13 @@ class CartService extends GetxController {
   double get totalCartPrice =>
       _cartItems.fold(0.0, (sum, item) => sum + item.totalPrice);
 
+  double get totalDiscountAmount {
+    return _cartItems.fold(
+      0.0,
+      (sum, item) => sum + (item.originalPrice - item.totalPrice),
+    );
+  }
+
   void addToCart(CartItem item) {
     print('Adding to cart: ${item.product.name}, Quantity: ${item.quantity}');
     // Check if the product with the exact same toppings already exists in the cart
@@ -37,7 +44,7 @@ class CartService extends GetxController {
     }
   }
 
-  void removeFromCart(CartItem item) {
+  void removeCartItem(CartItem item) {
     print('Removing from cart: ${item.product.name}');
     _cartItems.remove(item);
     print('Current cart items: ${_cartItems.length}');

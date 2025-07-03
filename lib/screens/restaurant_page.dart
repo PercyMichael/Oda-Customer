@@ -27,7 +27,7 @@ final dataCategories = [
 
 class RestaurantPage extends StatefulWidget {
   final Restaurant restaurant;
-  const RestaurantPage({Key? key, required this.restaurant}) : super(key: key);
+  const RestaurantPage({super.key, required this.restaurant});
 
   @override
   State<RestaurantPage> createState() => _RestaurantPageState();

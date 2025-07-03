@@ -7,11 +7,11 @@ class SmallQuantityControl extends StatelessWidget {
   final Function(int) onQuantityChanged;
 
   const SmallQuantityControl({
-    Key? key,
+    super.key,
     required this.initialQuantity,
     required this.initialPrice,
     required this.onQuantityChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -8,7 +8,6 @@ import 'package:oda/screens/home.dart';
 import 'package:oda/screens/product_page.dart';
 import 'package:oda/screens/restaurant_page.dart';
 import 'package:oda/models/restaurant.dart';
-import 'package:oda/models/product.dart';
 import 'package:oda/data/data.dart';
 import 'package:oda/screens/cart_page.dart';
 import 'package:oda/screens/checkout_page.dart';

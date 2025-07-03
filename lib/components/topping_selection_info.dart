@@ -7,10 +7,10 @@ class ToppingSelectionInfo extends StatelessWidget {
   final String toppingType;
 
   const ToppingSelectionInfo({
-    Key? key,
+    super.key,
     required this.productToppings,
     required this.toppingType,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

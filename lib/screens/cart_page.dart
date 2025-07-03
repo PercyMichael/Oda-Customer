@@ -5,9 +5,10 @@ import 'package:oda/components/customBackButton.dart';
 import 'package:oda/constants.dart';
 import 'package:oda/services/cart_service.dart';
 import 'package:oda/components/cart_item_card.dart';
+import 'package:oda/components/custom_filled_button.dart';
 
 class CartPage extends StatelessWidget {
-  CartPage({Key? key}) : super(key: key);
+  CartPage({super.key});
 
   final CartService _cartService = Get.find();
 
@@ -51,25 +52,16 @@ class CartPage extends StatelessWidget {
           color: AppColors.white,
           elevation: 1,
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5),
-            child: FilledButton(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
+            child: CustomFilledButton(
+              text:
+                  'Checkout Ugx ${NumberFormat("#,###").format(_cartService.totalCartPrice.round())}',
               onPressed:
                   _cartService.cartItems.isEmpty
                       ? null
                       : () {
                         Get.toNamed('/checkout_page');
                       },
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                backgroundColor: AppColors.secondary,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              child: Text(
-                'Checkout Ugx ${NumberFormat("#,###").format(_cartService.totalCartPrice.round())}',
-                style: AppTextStyles.button,
-              ),
             ),
           ),
         ),

@@ -4,7 +4,7 @@ import 'package:oda/constants.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class onBoard extends StatefulWidget {
-  const onBoard({Key? key}) : super(key: key);
+  const onBoard({super.key});
 
   @override
   State<onBoard> createState() => _onBoardState();
@@ -43,7 +43,7 @@ class _onBoardState extends State<onBoard> {
                         [1, 2, 3, 4].map((i) {
                           return Builder(
                             builder: (BuildContext context) {
-                              return Container(
+                              return SizedBox(
                                 height: 100,
                                 child: Image.asset(
                                   'assets/branding/Frame 1261157968.png',

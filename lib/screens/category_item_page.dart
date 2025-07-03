@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 class CategoryItemPage extends StatelessWidget {
   final String categoryName;
 
-  const CategoryItemPage({Key? key, required this.categoryName})
-    : super(key: key);
+  const CategoryItemPage({super.key, required this.categoryName});
 
   @override
   Widget build(BuildContext context) {

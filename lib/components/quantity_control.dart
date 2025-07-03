@@ -13,7 +13,7 @@ class QuantityControl extends StatefulWidget {
   final double textMaxWidth;
 
   const QuantityControl({
-    Key? key,
+    super.key,
     required this.initialQuantity,
     required this.initialPrice,
     required this.onQuantityChanged,
@@ -23,7 +23,7 @@ class QuantityControl extends StatefulWidget {
     this.textFontSize = 16,
     this.textMinWidth = 15.0,
     this.textMaxWidth = 30.0,
-  }) : super(key: key);
+  });
 
   @override
   State<QuantityControl> createState() => _QuantityControlState();
@@ -54,19 +54,19 @@ class _QuantityControlState extends State<QuantityControl> {
       mainAxisSize: MainAxisSize.min,
       children: [
         IconButton(
-          onPressed: _quantity > 1 ? () => _updateQuantity(-1) : null,
+          onPressed: _quantity > 0 ? () => _updateQuantity(-1) : null,
           icon: Icon(
             Icons.remove,
             color: AppColors.secondary,
             size: widget.iconSize,
           ),
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.grey[300]),
-            shape: MaterialStateProperty.all(
+            backgroundColor: WidgetStateProperty.all(Colors.grey[300]),
+            shape: WidgetStateProperty.all(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             ),
-            padding: MaterialStateProperty.all(widget.buttonPadding),
-            minimumSize: MaterialStateProperty.all(widget.buttonMinSize),
+            padding: WidgetStateProperty.all(widget.buttonPadding),
+            minimumSize: WidgetStateProperty.all(widget.buttonMinSize),
           ),
         ),
         SizedBox(width: widget.buttonPadding.horizontal / 2),
@@ -85,12 +85,12 @@ class _QuantityControlState extends State<QuantityControl> {
           onPressed: () => _updateQuantity(1),
           icon: Icon(Icons.add, color: AppColors.white, size: widget.iconSize),
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(AppColors.secondary),
-            shape: MaterialStateProperty.all(
+            backgroundColor: WidgetStateProperty.all(AppColors.secondary),
+            shape: WidgetStateProperty.all(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             ),
-            padding: MaterialStateProperty.all(widget.buttonPadding),
-            minimumSize: MaterialStateProperty.all(widget.buttonMinSize),
+            padding: WidgetStateProperty.all(widget.buttonPadding),
+            minimumSize: WidgetStateProperty.all(widget.buttonMinSize),
           ),
         ),
       ],

@@ -7,8 +7,7 @@ import 'package:oda/models/last_order_item.dart';
 import 'package:intl/intl.dart';
 
 class LastOrderCard extends StatelessWidget {
-  const LastOrderCard({Key? key, required this.lastOrderItem})
-    : super(key: key);
+  const LastOrderCard({super.key, required this.lastOrderItem});
 
   final LastOrderItem lastOrderItem;
 

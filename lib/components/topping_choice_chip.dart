@@ -9,11 +9,11 @@ class ToppingChoiceChip extends StatelessWidget {
   final ValueChanged<bool> onSelected;
 
   const ToppingChoiceChip({
-    Key? key,
+    super.key,
     required this.topping,
     required this.isSelected,
     required this.onSelected,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

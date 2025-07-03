@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get/get.dart';
-import 'package:get/utils.dart';
 import 'package:oda/components/categoryMenu.dart';
 import 'package:oda/constants.dart';
 

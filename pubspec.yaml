@@ -44,6 +44,8 @@ dependencies:
   flutter_otp_text_field: ^1.5.1+1
   flutter_vector_icons: ^2.0.0
   scrollable_positioned_list: ^0.3.8
+  dotted_line: ^3.2.3
+  google_maps_flutter: ^2.6.1
 
 dev_dependencies:
   flutter_test:

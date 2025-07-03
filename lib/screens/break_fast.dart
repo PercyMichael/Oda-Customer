@@ -15,7 +15,7 @@ import 'package:oda/data/data.dart' as data;
 import 'package:oda/models/restaurant.dart';
 
 class BreakFast extends StatefulWidget {
-  const BreakFast({Key? key}) : super(key: key);
+  const BreakFast({super.key});
 
   @override
   State<BreakFast> createState() => _BreakFastState();
@@ -170,10 +170,6 @@ class _BreakFastState extends State<BreakFast> {
                             ),
                             SizedBox(height: 10),
                             Container(
-                              child: Text(
-                                'On First Order',
-                                style: AppTextStyles.bodyTitle,
-                              ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: AppColors.white,
@@ -181,6 +177,10 @@ class _BreakFastState extends State<BreakFast> {
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 10,
                                 vertical: 5,
+                              ),
+                              child: Text(
+                                'On First Order',
+                                style: AppTextStyles.bodyTitle,
                               ),
                             ),
                           ],
